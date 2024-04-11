@@ -2,7 +2,9 @@ services:
   # Nginx service
   nginx:
     container_name: nginx
-    image: nginx:alpine
+    build:
+      context: ./nginx
+    # image: nginx:alpine
     ports:
       - "80:80"
     volumes:

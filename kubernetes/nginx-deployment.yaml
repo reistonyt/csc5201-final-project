@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment # Unique name of the Deployment within the namespace
+  labels:
+    app: nginx # For resource management; used to organize and select groups of resources
+spec:
+  replicas: 2 # Specifies the desired number of Pods
+  selector:
+    matchLabels:
+      app: nginx # Selects Pods with this label for Deployment management
+  template: # Template for creating new Pods
+    metadata:
+      labels:
+        app: nginx # Labels applied to Pods created from this template; must match selector above
+    spec:
+      containers:
+        - name: nginx # Name of the container within the Pod; for identification within the Pod
+          image: reistonyt/csc5201-final-project:nginx # The Docker image for the container
+        ports:
+          - containerPort: 80 # The port that the container listens on
