@@ -17,5 +17,6 @@ spec:
       containers:
         - name: nginx # Name of the container within the Pod; for identification within the Pod
           image: reistonyt/csc5201-final-project:nginx # The Docker image for the container
-        ports:
-          - containerPort: 80 # The port that the container listens on
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80 # The port that the container listens on
