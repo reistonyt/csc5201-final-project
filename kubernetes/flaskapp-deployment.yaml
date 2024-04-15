@@ -5,7 +5,7 @@ metadata:
   labels:
     app: flask  # For resource management; used to organize and select groups of resources
 spec:
-  replicas: 2  # Specifies the desired number of Pods
+  replicas: 1  # Specifies the desired number of Pods
   selector:
     matchLabels:
       app: flask  # Selects Pods with this label for Deployment management
@@ -20,3 +20,16 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5000  # The port that the container listens on
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask  # The name of the Service
+spec:
+  type: ClusterIP  # The type of Service; ClusterIP exposes the Service on an internal IP in the cluster
+  selector:
+    app: flask  # Selects Pods with this label for traffic routing
+  ports:
+    - protocol: TCP  # The protocol used by the Service (TCP/UDP)
+      port: 5000  # The port the Service listens on
+      targetPort: 5000  # The port on the Pod to forward traffic to
