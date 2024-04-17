@@ -17,7 +17,7 @@ class CheckRssUpdate:
         
     def __init_consumer(self):
         self.consumer = Consumer(self.config)
-        
+
     def checkForUpdate(self):
         self.consumer.subscribe(['news'])
         while True:
@@ -38,5 +38,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     load_dotenv()
-    
-    
+
+    checker = CheckRssUpdate(args.config)
+    checker.checkForUpdate()
