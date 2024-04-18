@@ -19,7 +19,7 @@ class CheckRssUpdate:
         self.consumer = Consumer(self.config)
 
     def checkForUpdate(self):
-        self.consumer.subscribe(['news'])
+        self.consumer.subscribe(['articles'])
         while True:
             message = self.consumer.poll(1.0)
             if message is None:

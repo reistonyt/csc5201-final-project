@@ -10,9 +10,9 @@ RUN npm run build
 FROM node:14
 WORKDIR /app
 COPY --from=build /app/build ./build
+COPY --from=build /app/node_modules ./node_modules
 # Copy the server script and package.json for dependencies
 COPY server.js ./
 COPY package*.json ./
-RUN npm install express
 EXPOSE 3000
 CMD ["node", "server.js"]

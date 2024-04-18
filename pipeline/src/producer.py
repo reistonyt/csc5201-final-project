@@ -48,6 +48,7 @@ class FetchRss:
     def __init_newsapi(self):
         apikeys = os.getenv('NEWSAPI_KEYS').split(',')        
         self.clients = [NewsApiClient(api_key=key) for key in apikeys]
+        self.clients = cycle(self.clients)
 
     def delivery_report(self, err, msg):
         if err is not None:
@@ -57,7 +58,7 @@ class FetchRss:
 
     def get_sources(self):
         # TODO: Get news sources from db
-        pass
+        return ['investing.com']
 
     def fetch_articles(self, source):
         # Round robin through the clients to avoid rate limiting
@@ -69,7 +70,7 @@ class FetchRss:
         
         # Get articles from the source
         articles = client.get_everything(
-            sources=source,
+            domains=source,
             language='en',
             from_param=date,
             sort_by='publishedAt'
@@ -101,6 +102,7 @@ class FetchRss:
                     self.producer.produce(topic, value=value, callback=self.delivery_report)
                     self.producer.poll(0)
                     print(f"Produced message to topic: {topic}, value: {value}")
+                    sleep(1)
             sleep(3600)
 
 if __name__ == "__main__":
