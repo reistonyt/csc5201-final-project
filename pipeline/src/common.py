@@ -16,7 +16,7 @@ def query_handler(func):
         try:
             return func(conn, *args, **kwargs)
         except Exception as e:
-            print(f"Database query failed: {e}")
+            print(f"common.py - query_handler - Error: {e}")
             result = None
         finally:
             conn.close()
@@ -24,10 +24,19 @@ def query_handler(func):
     return wrapper
 
 @query_handler
-def query(conn, query):
+def query(conn, sql_query, params = None, json_output = False):
     with conn.cursor() as cursor:
-        cursor.execute(query)
-        headers = [desc[0] for desc in cursor.description]
-        result = cursor.fetchall()
-        data = [dict(zip(headers, row)) for row in result]
-    return data
+        cursor.execute(sql_query, params)
+
+        # When insert, update or delete
+        if cursor.description is None:
+            conn.commit()
+            return cursor.rowcount
+        
+        # When select: return as json or list
+        if json_output:
+            headers = [desc[0] for desc in cursor.description]
+            result = cursor.fetchall()
+            return [dict(zip(headers, row)) for row in result]
+            
+        return cursor.fetchall()

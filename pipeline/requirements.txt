@@ -1,8 +1,4 @@
 confluent-kafka==2.3.0
-lxml_html_clean==0.1.1
-newspaper3k==0.2.8
 newsapi-python==0.2.7
 psycopg2-binary==2.9.9
-pyppeteer==2.0.0
 python-dotenv==1.0.1
-readability-lxml==0.8.1

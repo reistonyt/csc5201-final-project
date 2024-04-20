@@ -18,7 +18,7 @@ from newsapi import NewsApiClient
 from psycopg2 import sql
 
 # Local imports
-from common import query, query_handler
+from common import query
 
 """
 curl https://newsapi.org/v2/everything -G \
@@ -52,13 +52,17 @@ class FetchRss:
 
     def delivery_report(self, err, msg):
         if err is not None:
-            print(f'Message delivery failed: {err}')
+            print(f'producer.py - delivery_report - Message delivery failed: {err}')
         else:
-            print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
+            print(f'producer.py - delivery_report - Message delivered to {msg.topic()} [{msg.partition()}]')
 
     def get_sources(self):
         # TODO: Get news sources from db
-        return ['investing.com']
+        data = query("SELECT source FROM sources")
+        if not data:
+            return []
+        sources = [row[0] for row in data]
+        return sources
 
     def fetch_articles(self, source):
         # Round robin through the clients to avoid rate limiting
@@ -81,7 +85,7 @@ class FetchRss:
         while True:
             sources = self.get_sources()
             if not sources:
-                print("No sources available")
+                print("producer.py - produce - No sources available")
                 sleep(3600)
                 continue
             
@@ -89,10 +93,10 @@ class FetchRss:
                 # Get articles from the source
                 articles = self.fetch_articles(source)
                 if not articles:
-                    print(f"No articles available for source: {source}")
+                    print(f"producer.py - produce - No articles available for source: {source}")
                     continue
                 if articles.get('status', '') != 'ok':
-                    print(f"Error fetching articles for source: {source}")
+                    print(f"producer.py - produce - Error fetching articles for source: {source}")
                     continue
                 
                 # Produce the articles to Kafka
@@ -100,8 +104,8 @@ class FetchRss:
                     topic = "articles"
                     value = json.dumps(article)
                     self.producer.produce(topic, value=value, callback=self.delivery_report)
-                    self.producer.poll(0)
-                    print(f"Produced message to topic: {topic}, value: {value}")
+                    self.producer.poll(0) # Trigger delivery report
+                    print(f"producer.py - produce - Produced article: {article['title']} | to topic: {topic}")
                     sleep(1)
             sleep(3600)
 
