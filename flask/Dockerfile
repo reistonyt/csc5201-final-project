@@ -1,5 +1,13 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.12-slim
+
+# Install wget and download Google Chrome, then clean up in one layer
+RUN apt-get update && apt-get install -y wget \
+    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb \
+    && apt-get install -y /tmp/google-chrome-stable_current_amd64.deb --no-install-recommends \
+    # && apt-get purge --auto-remove -y wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/google-chrome-stable_current_amd64.deb
 
 # Set the working directory in the container
 WORKDIR /app

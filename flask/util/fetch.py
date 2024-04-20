@@ -31,7 +31,7 @@ async def save_page_html(url, filepath):
     await browser.close()
 
 # Set the URL and the file path
-url = 'https://www.cnn.com/2024/04/15/tech/meta-quest-vr-education/index.html'
+url = 'https://fortune.com/2024/04/18/tesla-shareholders-elon-musk-wants-45-billion-performance/'
 # url = "https://www.example.com"
 filepath = 'saved_page.html'
 
