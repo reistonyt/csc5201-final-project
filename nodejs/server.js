@@ -5,27 +5,29 @@ import axios from 'axios';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the React app build directory
-app.use(express.static("./build"));
+const __dirname = path.resolve();
+const __build = path.join(__dirname, 'build');
 
-// Handles any requests that don't match the ones above
+// Serve static files from the React app build directory
+app.use(express.static(__build));
+
+// Handles requests to the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join("./build/index.html"));
+  res.sendFile(path.join(__build, 'index.html'));
 });
 
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from the server!' });
 });
 
-// make request to flask service
-app.get('/api/flask', (req, res) => {
-  axios.get('http://flask:5000/api/hello')
-    .then(response => {
-      res.json({ message: "Hello from flask service" });
-    })
-    .catch(error => {
-      res.json({ message: 'Error fetching data from Flask service' });
-    });
+// Fetch data from the Flask service
+app.get('/api/news/summarize', async (req, res) => {
+  try {
+    const response = await axios.get('http://flask:5000/api/news/summarize');
+    res.json({ message: response.data });
+  } catch (error) {
+    res.json({ message: 'Error fetching data from Flask service: ' + error });
+  }
 });
 
 app.listen(PORT, () => {
