@@ -114,7 +114,5 @@ if __name__ == "__main__":
     parser.add_argument('config', help='Path to the configuration file')
     args = parser.parse_args()
     
-    load_dotenv()
-    
     fetcher = FetchRss(args.config)
     fetcher.produce()

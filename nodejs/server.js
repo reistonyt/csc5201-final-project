@@ -1,19 +1,21 @@
-import express from 'express';
-import path from 'path';
-import axios from 'axios';
+// import express from 'express';
+// import path from 'path';
+// import axios from 'axios';
+
+// import above using require
+const express = require('express');
+const path = require('path');
+const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const __dirname = path.resolve();
-const __build = path.join(__dirname, 'build');
-
 // Serve static files from the React app build directory
-app.use(express.static(__build));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Handles requests to the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__build, 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/api', (req, res) => {
