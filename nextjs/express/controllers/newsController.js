@@ -14,6 +14,7 @@ const getNews = async (req, res) => {
     res.status(200).json({
       articles: result.rows,
       page,
+      records: result.rowCount,
     }); // Return the results with pagination info
   } catch (err) {
     console.error('Error fetching news from database:', err);
