@@ -5,7 +5,9 @@ export const metadata = {
   description: 'NewsAgg page',
 }
 
-import NavigationBar from "@/components/root/NavigationBar";
+
+import NavigationBar from '@/components/NavigationBar';
+
 export default function RootLayout({
   children,
 }: {

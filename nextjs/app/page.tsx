@@ -1,7 +1,7 @@
 // External Libraries
 import { Container, Row, Col } from 'react-bootstrap';  // React Bootstrap components
 
-import '@/components/root/Root.css';  // CSS Module
+import '@/styles/global.css';  // CSS Module
 
 function Home() {
   return (

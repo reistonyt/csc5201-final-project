@@ -3,13 +3,16 @@ import axios from 'axios';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-import '@/components/news-feed/NewsFeed.css';
 
-async function getNewsFeed() {
-  const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+import '@/styles/news-feed/NewsFeed.css';
+
+async function getNewsFeed(page: number = 1) {
+  const response = await axios.get('/api/news-feed', {
+    params: { page },
+  });
+
   return response.data;
-}
-
+};
 
 function NewsFeed() {
   return (

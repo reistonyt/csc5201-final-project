@@ -8,12 +8,12 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - express
-  ########### Express service ###########
-  express:
-    container_name: express
+      - nextjs
+  ########### Nextjs service ###########
+  nextjs:
+    container_name: nextjs
     build:
-      context: ./express
+      context: ./nextjs
     depends_on:
       - flask
     # ports:

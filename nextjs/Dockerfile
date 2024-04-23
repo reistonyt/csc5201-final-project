@@ -9,10 +9,9 @@ RUN npm run build
 # Stage 2: Serve the application with Express
 FROM node:21
 WORKDIR /app
+COPY package*.json ./
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/node_modules ./node_modules
-COPY server.js ./
-COPY utils ./utils
-COPY package*.json ./
+COPY --from=build /app/express ./express
 EXPOSE 3000
-CMD ["node", "server.js"]
+CMD ["node", "./express/server.js"]

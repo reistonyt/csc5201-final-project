@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';  // React Bootstrap components
 
 // Internal Components and Styles
-import '@/components/root/NavigationBar.css';  // NavigationBar styles
+import '@/styles/NavigationBar.css';  // NavigationBar styles
 
 const NavigationBar: React.FC = () => {  // Adding TypeScript types
   return (
