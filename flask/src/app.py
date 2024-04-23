@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello_world():
     return jsonify(message="Hello, World from Flask!")
 
-@app.route('/api/news/summarize')
+@app.route('/api/news/summary')
 def gpt():
     client = OpenAI()
     completion = client.chat.completions.create(
@@ -22,7 +22,7 @@ def gpt():
         ],
     )
     
-    return jsonify(completion.choices[0].message.content)
+    return jsonify(message=completion.choices[0].message.content)
 
 # if __name__ == '__main__':
 #     app.run(debug=True, host='0.0.0.0', port=5000)

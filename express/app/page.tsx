@@ -1,13 +1,12 @@
 // External Libraries
 import { Container, Row, Col } from 'react-bootstrap';  // React Bootstrap components
 
-// Internal Components
-import NavigationBar from '@/components/NavigationBar';  // Navigation bar component
+import '@/components/root/Root.css';  // CSS Module
 
 function Home() {
   return (
     <>
-      <Container fluid className="vh-100 d-flex justify-content-center align-items-center bg-light">
+      <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Row>
           <Col>
             <h1 className="display-1 text-center">Welcome to NewsAgg!</h1>

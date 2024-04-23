@@ -8,25 +8,27 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - nodejs
-  ########### Nodejs service ###########
-  nodejs:
-    container_name: nodejs
+      - express
+  ########### Express service ###########
+  express:
+    container_name: express
     build:
-      context: ./nodejs
+      context: ./express
     depends_on:
       - flask
     # ports:
     #   - "3000:3000"
+    env_file:
+      - ./.env
   ########### Flask service ###########
   flask:
     container_name: flask
     env_file:
-      - ./flask/.env
+      - ./.env
     build:
       context: ./flask
     ports:
-      - "5000"
+      - "5000:5000"
   ########### Kafka service ###########
   kafka:
     container_name: kafka
@@ -39,7 +41,7 @@ services:
   pipeline:
     container_name: pipeline
     env_file:
-      - ./pipeline/.env
+      - ./.env
     build:
       context: ./pipeline
     # ports:
