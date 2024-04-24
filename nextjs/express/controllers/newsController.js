@@ -2,9 +2,9 @@ const pool = require('../utils/db'); // Database pool
 const axios = require('axios'); // HTTP client for external requests
 
 const getNews = async (req, res) => {
-  const page = parseInt(req.query.page, 10) || 0; // Ensure `page` is a number
+  const page = parseInt(req.query.page, 10) || 1; // Ensure `page` is a number
   const limit = 20; // Define the limit for pagination
-  const offset = page * limit;
+  const offset = (page - 1) * limit; // Calculate the offset based on the page number
 
   try {
     const result = await pool.query(

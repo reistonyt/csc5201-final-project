@@ -12,25 +12,31 @@ interface ArticleProps {
     published_at: string,
     title: string,
     url: string,
-  }
-}
+  };
+};
 
 const Article: React.FC<ArticleProps> = ({ article }) => {
+  // Event handler for summarizing the article
+  const summarizeArticle = () => {
+    console.log(`Summarizing article: ${article.title}`);
+  };
+
   return (
     <Card className="mb-3">
       <CardHeader>
         <CardTitle className='card-title'>{article.title}</CardTitle>
-        <CardSubtitle className='card-text'>Source: {article.source}</CardSubtitle>
-        <CardSubtitle className='card-text'>Published Date: {article.published_at}</CardSubtitle>
+        <CardSubtitle className='card-text mt-2'>Source: {article.source}</CardSubtitle>
+        <CardSubtitle className='card-text mt-2'>Published Date: {article.published_at}</CardSubtitle>
       </CardHeader>
       <CardBody>
-        <div className='my-2'>
-          <Button variant="primary">Summarize</Button>
+        <CardText className='card-text'>Summary: </CardText>
+        <CardLink className='card-text' href={article.url} target='_blank' rel='noopener noreferrer'>Read More</CardLink>
+        <div className='mt-4'>
+          <Button onClick={summarizeArticle}>Summarize</Button>
         </div>
-        <CardLink className='card-text' href={article.url}>Read More</CardLink>
       </CardBody>
     </Card>
   )
-}
+};
 
 export default Article;
