@@ -25,6 +25,15 @@ function NewsFeed () {
         setArticles(newsData.articles); // Assuming the response has an "articles" field
       } catch (error) {
         console.error('Error fetching news:', error);
+        // use fake data for testing
+        // setArticles([
+        //   {
+        //     source: 'Fake News',
+        //     published_at: '2021-01-01',
+        //     title: 'Fake News Article',
+        //     url: 'https://example.com',
+        //   },
+        // ]);
       } finally {
         setLoading(false); // Update loading state
       }
