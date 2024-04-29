@@ -18,4 +18,4 @@ COPY ./consumer.py .
 # CMD ["python3", "consumer.py", "kafka_config.ini"]
 
 # Sleep for 10 seconds to wait for the Kafka broker to start
-CMD ["sh", "-c", "sleep 10 && python3 consumer.py kafka_config.ini"]
+CMD ["sh", "-c", "sleep 30 && python3 consumer.py kafka_config.ini"]

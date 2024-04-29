@@ -75,7 +75,7 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
         <div className='card-component'>
           <CardLink href={article.url} target='_blank' rel='noopener noreferrer'>Read More</CardLink>
         </div>
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center my-3'>
           <Button onClick={summarizeArticle}>Summarize</Button>
         </div>
       </CardBody>

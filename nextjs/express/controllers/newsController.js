@@ -13,7 +13,7 @@ const getNews = async (req, res) => {
 
   try {
     const result = await pool.query(
-      'SELECT * FROM articles LIMIT $1 OFFSET $2', 
+      'SELECT * FROM articles order by published_at desc LIMIT $1 OFFSET $2',
       [limit, offset]
     ); // SQL query with parameterized values
     res.status(200).json({

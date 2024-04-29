@@ -34,11 +34,12 @@ spec:
         resources:
         ports:
         - containerPort: 9092
+        - containerPort: 9093
         # volumeMounts:
         # - name: kafka-storage
         #   mountPath: /var/lib/kafka
-        command: ["sleep"]
-        args: ["infinity"]
+        # command: ["sleep"]
+        # args: ["infinity"]
       # volumes:
       # - name: kafka-storage
       #   persistentVolumeClaim:

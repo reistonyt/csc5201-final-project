@@ -1,12 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from '@/components/NavigationBar';
+import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'NewsAgg',
   description: 'NewsAgg page',
 }
-
-
-import NavigationBar from '@/components/NavigationBar';
 
 export default function RootLayout({
   children,
@@ -18,6 +17,7 @@ export default function RootLayout({
       <body>
         <NavigationBar />
         {children}
+        <Footer />
       </body>
     </html>
   )
