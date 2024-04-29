@@ -27,8 +27,6 @@ services:
       - ./.env
     build:
       context: ./flask
-    ports:
-      - "5000:5000"
   ########### Kafka service ###########
   kafka:
     container_name: kafka
@@ -38,13 +36,31 @@ services:
     # ports:
     #   - "9092:9092"
   ########### Pipeline service ###########
-  pipeline:
-    container_name: pipeline
+  # pipeline:
+  #   container_name: pipeline
+  #   env_file:
+  #     - ./.env
+  #   build:
+  #     context: ./pipeline
+  #   # ports:
+  #   #   - "5000:5000"
+  #   depends_on:
+  #     - kafka
+  ########### Producer service ###########
+  producer:
+    container_name: producer
     env_file:
       - ./.env
     build:
-      context: ./pipeline
-    # ports:
-    #   - "5000:5000"
+      context: ./pipeline/producer
+    depends_on:
+      - kafka
+  ########### Consumer service ###########
+  consumer:
+    container_name: consumer
+    env_file:
+      - ./.env
+    build:
+      context: ./pipeline/consumer
     depends_on:
       - kafka

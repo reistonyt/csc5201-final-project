@@ -9,8 +9,13 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application source code into the Docker image
-COPY src/ .
-COPY config/ .
+COPY ./common/ .
+COPY ./producer.py .
 
 # The command to keep the container running
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
+
+# CMD ["python3", "producer.py", "kafka_config.ini"]
+
+# Sleep for 10 seconds to wait for the Kafka broker to start
+CMD ["sh", "-c", "sleep 10 && python3 producer.py kafka_config.ini"]

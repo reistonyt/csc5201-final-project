@@ -20,6 +20,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80 # The port that the container listens on
+          resources:
 ---
 apiVersion: v1
 kind: Service

@@ -30,5 +30,8 @@ RUN python3 fetch.py
 # Run app.py when the container launches
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
+# Run app.py when the container launches with 4 workers and 4 threads
+# CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--threads", "4", "app:app"]
+
 # Run nothing
 # CMD ["tail", "-f", "/dev/null"]

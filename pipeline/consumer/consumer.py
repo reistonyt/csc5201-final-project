@@ -1,16 +1,17 @@
+# Standard imports
 import argparse
 import configparser
-from dotenv import load_dotenv
-from confluent_kafka import Consumer
-
-from common import query
-
-from psycopg2 import IntegrityError
-from datetime import datetime
-
 import json
 
+# Third-party imports
+from confluent_kafka import Consumer
+from datetime import datetime
+from dotenv import load_dotenv
+from psycopg2 import IntegrityError
 from time import sleep
+
+# Local imports
+from common import query
 
 class CheckRssUpdate:
     def __init__(self, config_path):
@@ -73,12 +74,7 @@ class CheckRssUpdate:
             # Check if message is a json object, then store it
             if article := self.convert_to_json(message):
                 self.store_article(article)
-
-            sleep(5)
         # self.consumer.close()
-        
-    def produce(self):
-        pass
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Fetch news from database and consume from Kafka')

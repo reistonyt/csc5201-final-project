@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deployment
+  labels:
+    app: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer
+  template:
+    metadata:
+      labels:
+        app: consumer
+    spec:
+      containers:
+        - name: consumer
+          image: reistonyt/csc5201-final-project:consumer
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          resources:
+          envFrom:
+            - secretRef:
+                name: app-secrets

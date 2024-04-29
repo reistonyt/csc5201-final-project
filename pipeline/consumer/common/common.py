@@ -1,7 +1,10 @@
-import os
-import psycopg2
-from functools import wraps
+# Standard imports
 import json
+import os
+
+# Third-party imports
+from functools import wraps
+import psycopg2
 
 def query_handler(func):
     @wraps(func)

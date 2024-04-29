@@ -16,10 +16,14 @@ spec:
     spec:
       containers:
         - name: flask  # Name of the container within the Pod; for identification within the Pod
-          image: reistonyt/csc5201-final-project:flaskapp  # The Docker image for the container
+          image: reistonyt/csc5201-final-project:flask  # The Docker image for the container
           imagePullPolicy: Always
           ports:
             - containerPort: 5000  # The port that the container listens on
+          resources:
+          envFrom:
+            - secretRef:
+                name: app-secrets
 ---
 apiVersion: v1
 kind: Service

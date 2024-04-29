@@ -10,8 +10,10 @@ RUN npm run build
 FROM node:21
 WORKDIR /app
 COPY package*.json ./
+RUN npm install -g pm2
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/express ./express
 EXPOSE 3000
-CMD ["node", "./express/server.js"]
+# CMD ["node", "./express/server.js"]
+CMD ["pm2-runtime", "start", "./express/server.js", "--name", "express-server", "-i", "4"]

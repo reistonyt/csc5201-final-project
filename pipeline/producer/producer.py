@@ -106,7 +106,6 @@ class FetchRss:
                     self.producer.produce(topic, value=value, callback=self.delivery_report)
                     self.producer.poll(0) # Trigger delivery report
                     print(f"producer.py - produce - Produced article: {article['title']} | to topic: {topic}")
-                    sleep(1)
             sleep(3600)
 
 if __name__ == "__main__":

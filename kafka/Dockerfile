@@ -1,9 +1,12 @@
+# Use the official Apache Kafka base image
 FROM apache/kafka:3.7.0
 
-# Remove the default server.properties file
-RUN rm -f /etc/kafka/docker/server.properties
-
-# Copy the custom server.properties file
-COPY server.properties /etc/kafka/docker/server.properties
-
+# Expose Kafka ports
 EXPOSE 9092
+# EXPOSE 9093
+
+# Copy your custom initialization script (already made executable)
+COPY init-kafka.sh /usr/local/bin/init-kafka.sh
+
+# Set the entry point to run your script
+ENTRYPOINT ["/usr/local/bin/init-kafka.sh"]

@@ -53,7 +53,6 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
       setSummary('Error summarizing article.');
     }
   };
-  
 
   return (
     <Card className="mb-3">
