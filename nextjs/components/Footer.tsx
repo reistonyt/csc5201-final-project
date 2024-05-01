@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
       <Row className="justify-content-md-center">
         <Col md={4} className="text-center">
           <div>
-            © {new Date().getFullYear()} Newegg
+            © {new Date().getFullYear()} NewsFeed AI
           </div>
         </Col>
       </Row>

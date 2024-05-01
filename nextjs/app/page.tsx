@@ -9,7 +9,7 @@ function Home() {
       <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Row>
           <Col>
-            <h1 className="display-1 text-center">Welcome to NewsAgg!</h1>
+            <h1 className="display-1 text-center">Welcome to NewsFeed AI!</h1>
           </Col>
         </Row>
       </Container>

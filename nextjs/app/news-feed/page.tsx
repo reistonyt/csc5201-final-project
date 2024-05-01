@@ -57,7 +57,7 @@ function NewsFeed () {
     <>
       <Container className='my-5'>
         <Container fluid className="d-flex justify-content-center">
-          <Row>
+          <Row className='mb-2'>
             <Col>
               <h1 className="display-1 text-center">News Feed</h1>
             </Col>

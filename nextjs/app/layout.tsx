@@ -3,8 +3,8 @@ import NavigationBar from '@/components/NavigationBar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'NewsAgg',
-  description: 'NewsAgg page',
+  title: 'NewsFeed AI - Home',
+  description: 'NewsFeed AI',
 }
 
 export default function RootLayout({

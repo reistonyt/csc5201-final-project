@@ -5,7 +5,7 @@ metadata:
   labels:
     app: flask  # For resource management; used to organize and select groups of resources
 spec:
-  replicas: 1  # Specifies the desired number of Pods
+  replicas: 3  # Specifies the desired number of Pods
   selector:
     matchLabels:
       app: flask  # Selects Pods with this label for Deployment management

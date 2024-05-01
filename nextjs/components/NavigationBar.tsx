@@ -18,7 +18,7 @@ const NavigationBar: React.FC = () => {  // Adding TypeScript types
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
       <Container>
-        <NavbarBrand href="/">NewsAgg</NavbarBrand>
+        <NavbarBrand href="/">NewsFeed AI</NavbarBrand>
         <NavbarToggle aria-controls="basic-navbar-nav" />
         <NavbarCollapse id="basic-navbar-nav">
           <Nav className="me-auto">

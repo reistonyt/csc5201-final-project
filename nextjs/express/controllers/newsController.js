@@ -1,6 +1,5 @@
 const pool = require('../utils/db'); // Database pool
 const axios = require('axios'); // HTTP client for external requests
-const { url } = require('inspector');
 
 const getNews = async (req, res) => {
   let page = parseInt(req.query.page);
@@ -26,18 +25,6 @@ const getNews = async (req, res) => {
     res.status(500).json({ error: 'Error fetching news from database' });
   }
 };
-
-// const getNewsSummary = async (req, res) => {
-//   try {
-//     const result = await axios.get('http://flask:5000/api/news/summary', {
-//       params: { url: req.query.url },
-//     }); // GET request to Flask API with URL parameter
-//     res.status(200).json(result.data); // Return Flask data
-//   } catch (err) {
-//     console.error('Error fetching news summary:', err);
-//     res.status(500).json({ error: 'Error fetching news summary' });
-//   }
-// };
 
 const getNewsSummary = async (req, res) => {
   try {

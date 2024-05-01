@@ -1,3 +1,5 @@
-https://kubernetes.io/docs/home/
-https://www.conduktor.io/kafka/how-to-install-apache-kafka-on-linux-without-zookeeper-kraft-mode/
-https://www.geeksforgeeks.org/generators-in-python/#
+https://kubernetes.io/docs/home/ Kubernetes documentation.
+https://www.conduktor.io/kafka/how-to-install-apache-kafka-on-linux-without-zookeeper-kraft-mode/ - How to set up apache kafka in kraft mode (instead of using zookeeper).
+https://www.geeksforgeeks.org/generators-in-python/ - How to use generators in python to create data stream endpoints.
+https://nextjs.org/learn/dashboard-app - Next js documentation.
+https://docs.digitalocean.com/products/kubernetes/how-to/set-up-autoscaling/ - Auto scaling.
