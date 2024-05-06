@@ -4,7 +4,6 @@ services:
     container_name: nginx
     build:
       context: ./nginx
-    # image: nginx:alpine
     ports:
       - "80:80"
     depends_on:
@@ -16,8 +15,6 @@ services:
       context: ./nextjs
     depends_on:
       - flask
-    # ports:
-    #   - "3000:3000"
     env_file:
       - ./.env
   ########### Flask service ###########
@@ -30,22 +27,8 @@ services:
   ########### Kafka service ###########
   kafka:
     container_name: kafka
-    # image: apache/kafka:3.7.0
     build:
       context: ./kafka
-    # ports:
-    #   - "9092:9092"
-  ########### Pipeline service ###########
-  # pipeline:
-  #   container_name: pipeline
-  #   env_file:
-  #     - ./.env
-  #   build:
-  #     context: ./pipeline
-  #   # ports:
-  #   #   - "5000:5000"
-  #   depends_on:
-  #     - kafka
   ########### Producer service ###########
   producer:
     container_name: producer
